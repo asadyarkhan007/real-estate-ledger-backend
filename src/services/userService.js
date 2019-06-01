@@ -34,6 +34,29 @@ export function getUserByEmail(data) {
   return User.where({ email: data.email }).fetch();
 }
 
+export function getUserByEmailAndUserType(data) {
+  return User.where({ email: data.email, user_type:data.userType }).fetch();
+}
+
+export function getUserByEmailAndUserTypeAndOrgId(data) {
+  return User.where({ email: data.email, user_type:data.userType,
+  org_id:data.orgId }).fetch();
+}
+
+export function getUserByUsername(data) {
+  return User.where({ username: data.username }).fetch();
+}
+
+export function getUserByUsernameAndUserType(data) {
+  return User.where({ username: data.username, user_type:data.userType }).fetch();
+}
+
+export function getUserByUsernameAndUserTypeAndOrgId(data) {
+  return User.where({ username: data.username, user_type:data.userType,
+  managing_org:data.orgId }).fetch();
+}
+
+
 /**
  * Create new user.
  *
@@ -51,6 +74,34 @@ export function createUser(data) {
     blockchain_key: data.blockchain_key
   }).save();
 }
+
+export function createCustomer(data) {
+  return new User({
+    username: data.username,
+    password: passwordHash.generate(data.password),
+    email: data.email,
+    phone_number: data.phone_number,
+    nic: data.nic,
+    managing_org: data.managing_org,
+    blockchain_key: data.blockchain_key,
+    user_type:3
+  }).save();
+}
+
+
+export function createRegistrar(data) {
+  return new User({
+    username: data.username,
+    password: passwordHash.generate(data.password),
+    email: data.email,
+    phone_number: data.phone_number,
+    nic: data.nic,
+    managing_org: data.managing_org,
+    blockchain_key: data.blockchain_key,
+    user_type:2
+  }).save();
+}
+
 
 /**
  * Update a user.

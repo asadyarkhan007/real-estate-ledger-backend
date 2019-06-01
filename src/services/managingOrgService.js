@@ -1,6 +1,6 @@
 import Boom from 'boom';
 import ManagingOrg from '../models/managingOrg';
-
+import * as addressService from '../services/addressService';
 /**
  * Get all managingOrg.
  *
@@ -34,8 +34,11 @@ export function getManagingOrg(id) {
  * @param   {Object}  managingOrg
  * @returns {Promise}
  */
-export function createManagingOrg(managingOrg) {
-  return new ManagingOrg({ name: managingOrg.name }).save();
+export async function createManagingOrg(managingOrg) {
+  const address = await addressService.createAddress(managingOrg.address);
+
+  
+return new ManagingOrg({ name: managingOrg.name, address_id:address.get("id") }).save();
 }
 
 /**

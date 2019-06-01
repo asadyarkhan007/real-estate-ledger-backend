@@ -24,7 +24,9 @@ export function up(knex) {
     table.integer('phone_number').unsigned();
     table.integer('nic').unsigned();
     table.integer('managing_org').unsigned();
+    table.integer('user_type').unsigned();
     table.string('blockchain_key').nullable();
+    table.integer('active').unsigned().defaultTo(1);
 
     table
       .foreign('managing_org')

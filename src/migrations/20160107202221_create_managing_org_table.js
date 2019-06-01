@@ -16,6 +16,13 @@ export function up(knex) {
       .notNull()
       .defaultTo(knex.raw('now()'));
     table.string('name').notNull();
+    table.integer('active').unsigned().defaultTo(1);
+    table.integer('address_id').unsigned();
+    table
+      .foreign('address_id')
+      .references('id')
+      .inTable('address');
+
   });
 }
 
