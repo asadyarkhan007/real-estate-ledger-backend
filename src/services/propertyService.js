@@ -53,6 +53,30 @@ export async function getProperty(id) {
 }
 
 /**
+ * Get a property.
+ *
+ * @param   {Number|String}  id
+ * @returns {Promise}
+ */
+export async function getPropertiesByOrgId(orgId) {
+  const property = await new Property({ managing_org_id:orgId }).fetch({
+    withRelated: [
+      'plot',
+      'plot.address',
+      'propertyType',
+      'propertyKind',
+      'managingOrg',
+      'building',
+      'apartment',
+      'banglow'
+    ]
+  });
+
+  if (property) {
+    return property;
+  }
+}
+/**
  * Create new property.
  *
  * @param   {Object}  data
