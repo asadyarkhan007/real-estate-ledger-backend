@@ -31,20 +31,6 @@ export function fetchById(req, res, next) {
 }
 
 /**
- * Get a property by its orgId.
- *
- * @param {Object} req
- * @param {Object} res
- * @param {Function} next
- */
-export function fetchByOrg(req, res, next) {
-  propertyService
-    .getPropertiesByOrgId(req.params.orgId)
-    .then(data => res.json({ data }))
-    .catch(err => next(err));
-}
-
-/**
  * Create a new Property.
  *
  * @param {Object} req

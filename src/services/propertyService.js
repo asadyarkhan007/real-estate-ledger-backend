@@ -53,30 +53,6 @@ export async function getProperty(id) {
 }
 
 /**
- * Get a property.
- *
- * @param   {Number|String}  id
- * @returns {Promise}
- */
-export async function getPropertiesByOrgId(orgId) {
-  const property = await new Property({ managing_org_id:orgId }).fetch({
-    withRelated: [
-      'plot',
-      'plot.address',
-      'propertyType',
-      'propertyKind',
-      'managingOrg',
-      'building',
-      'apartment',
-      'banglow'
-    ]
-  });
-
-  if (property) {
-    return property;
-  }
-}
-/**
  * Create new property.
  *
  * @param   {Object}  data
@@ -118,6 +94,7 @@ export async function createPropertyWithAllData(data) {
         property_type_id: data.property_type_id,
         property_kind_id: data.property_kind_id,
         plot_id: plot.get('id'),
+        name: data.plot_no,
         managing_org_id: data.managing_org_id
       }).save();
     }
@@ -132,6 +109,7 @@ export async function createPropertyWithAllData(data) {
         property_kind_id: data.property_kind_id,
         building_id: building.get('id'),
         plot_id: building.get('plot_id'),
+        name: building.get('name'),
         managing_org_id: data.managing_org_id
       }).save();
     }
@@ -149,6 +127,7 @@ export async function createPropertyWithAllData(data) {
         building_id: apartment.get('building_id'),
         apartment_id: apartment.get('id'),
         plot_id: building.get('plot_id'),
+        name: apartment.get('name'),
         managing_org_id: data.managing_org_id
       }).save();
     }
@@ -163,6 +142,7 @@ export async function createPropertyWithAllData(data) {
         property_kind_id: data.property_kind_id,
         plot_id: banglow.get('plot_id'),
         banglow_id: banglow.get('id'),
+        name: banglow.get('name'),
         managing_org_id: data.managing_org_id
       }).save();
     }

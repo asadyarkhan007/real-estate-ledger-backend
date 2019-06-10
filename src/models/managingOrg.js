@@ -1,4 +1,5 @@
 import bookshelf from '../db';
+import Address from './address';
 
 const TABLE_NAME = 'managing_org';
 
@@ -11,6 +12,13 @@ class ManagingOrg extends bookshelf.Model {
    */
   get tableName() {
     return TABLE_NAME;
+  }
+
+  /**
+   * Has belongsTo address.
+   */
+  address() {
+    return this.belongsTo(Address, 'address_id');
   }
 
   /**

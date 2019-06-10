@@ -35,7 +35,13 @@ export function getAddress(id) {
  * @returns {Promise}
  */
 export function createAddress(data) {
-  return new Address({ street: data.street, area: data.area, city: data.city, country: data.country }).save();
+  return new Address({
+    street: data.street,
+    area: data.area,
+    city: data.city,
+    country: data.country,
+    province: data.province || ''
+  }).save();
 }
 
 /**
@@ -46,7 +52,13 @@ export function createAddress(data) {
  * @returns {Promise}
  */
 export function updateAddress(id, data) {
-  return new Address({ id }).save({ street: data.street, area: data.area, city: data.city, country: data.country });
+  return new Address({ id }).save({
+    street: data.street,
+    area: data.area,
+    city: data.city,
+    country: data.country,
+    province: data.province || ''
+  });
 }
 
 /**

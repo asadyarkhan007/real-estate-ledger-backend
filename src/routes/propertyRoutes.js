@@ -10,12 +10,6 @@ const router = Router();
 router.get('/', propertyController.fetchAll);
 
 /**
- * GET /api/property-type/:orgId
- */
-router.get('/org/:orgId', propertyController.fetchByOrg);
-
-
-/**
  * GET /api/property-type/:id
  */
 router.get('/:id', propertyController.fetchById);

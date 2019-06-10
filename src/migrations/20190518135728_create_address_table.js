@@ -18,6 +18,7 @@ export function up(knex) {
     table.string('street');
     table.string('area');
     table.string('city');
+    table.string('province').nullable();
     table.string('country');
   });
 }

@@ -1,6 +1,5 @@
 import './env';
 import './db';
-import './sequelizedb';
 
 import fs from 'fs';
 import cors from 'cors';
