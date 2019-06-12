@@ -30,7 +30,7 @@ export function up(knex) {
       .unsigned()
       .nullable();
     table.integer('phone_number').unsigned();
-    table.integer('nic').unsigned();
+    table.bigInteger('nic').unsigned();
     table.integer('managing_org').unsigned();
     table.string('blockchain_key').nullable();
 
